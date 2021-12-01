@@ -7,8 +7,9 @@ import { TagList } from "./TagList";
 const availableDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const DigitTest = () => {
-	// We store the selected digits
+	// We store the selected digits in an array of integer values
 	const [selectedDigits, setSelectedDigits] = useState([]);
+	// And the resulting sum
 	const [sum, updateSum] = useState(0);
 
 	// Anytime the selection is updated, we must update the sum
@@ -19,26 +20,17 @@ const DigitTest = () => {
 	// Utility methods to add and remove valid digits from the selection
 	const isSelected = (d) => selectedDigits.find((x) => x === d);
 	const addDigit = (evt) => {
-		try {
-			const digitValue = Number.parseInt(evt.target.value, 10); // It must be an integer
-			if (digitValue && !isSelected(digitValue)) {
-				// NaN is excluded here
-				setSelectedDigits(
-					// Add the new digit and re-sort the array
-					[digitValue, ...selectedDigits].sort((a, b) => (a > b ? 1 : -1))
-				);
-			}
-		} catch (err) {
-			console.error(`addDigit(${d}) failed`, error);
+		const newDigit = Number.parseInt(evt.target.value, 10);
+		if (newDigit && !isSelected(newDigit)) {
+			setSelectedDigits(
+				// Add the new digit and re-sort the array
+				[newDigit, ...selectedDigits].sort((a, b) => (a > b ? 1 : -1))
+			);
 		}
 	};
 	const removeDigit = (d) => {
-		try {
-			const digitValue = Number.parseInt(d, 10); // It must be an integer
-			setSelectedDigits(selectedDigits.filter((x) => x !== digitValue));
-		} catch (err) {
-			console.error(`addDigit(${d}) failed`, error);
-		}
+		const digitValue = Number.parseInt(d, 10); // It must be an integer
+		setSelectedDigits(selectedDigits.filter((x) => x !== digitValue));
 	};
 
 	return (
