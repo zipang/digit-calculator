@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/layout";
 import { Select } from "@chakra-ui/select";
 import { useEffect, useState } from "react";
-import { Title } from "./base/Typography";
+import { CodeBox, Title } from "./base/Typography";
 import { TagList } from "./TagList";
 
 const availableDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -53,11 +53,11 @@ const DigitTest = () => {
 			</Select>
 
 			<Title as="h3">Sum</Title>
-			<code>{sum}</code>
+			<CodeBox>{sum}</CodeBox>
 
 			<Title as="h3">Selected digits</Title>
 			{sum === 0 ? (
-				<Box>You have not selected any digit</Box>
+				<CodeBox error={true}>You have not selected any digit</CodeBox>
 			) : (
 				<TagList selected={selectedDigits} onRemove={removeDigit} />
 			)}
