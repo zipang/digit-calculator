@@ -1,7 +1,11 @@
 import { Heading } from "@chakra-ui/layout";
 
-export const Title = ({ children }) => (
-	<Heading as="h2" color="#293845">
+/**
+ * Heading default styles
+ * @param {Object} propsWithChildren
+ */
+export const Title = ({ children, ...moreProps }) => (
+	<Heading as="h2" color="#293845" {...moreProps}>
 		{children}
 	</Heading>
 );
