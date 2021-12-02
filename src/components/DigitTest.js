@@ -24,7 +24,7 @@ const DigitTest = () => {
 		if (newDigit && !isSelected(newDigit)) {
 			setSelectedDigits(
 				// Add the new digit and re-sort the array
-				[newDigit, ...selectedDigits].sort((a, b) => (a > b ? 1 : -1))
+				[newDigit, ...selectedDigits].sort()
 			);
 		}
 	};
@@ -44,10 +44,10 @@ const DigitTest = () => {
 				))}
 			</Select>
 
-			<Title as="h3">Sum</Title>
+			<Title>Sum</Title>
 			<CodeBox>{sum}</CodeBox>
 
-			<Title as="h3">Selected digits</Title>
+			<Title>Selected digits</Title>
 			{sum === 0 ? (
 				<CodeBox error={true}>You have not selected any digit</CodeBox>
 			) : (
